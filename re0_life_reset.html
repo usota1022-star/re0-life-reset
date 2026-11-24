@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101116">
+<title>RE:0から始める人生</title>
+<style>
+:root{--bg:#101116;--panel:#1a1c24;--panel2:#222530;--line:#303442;--text:#f4f5f8;--muted:#a4a8b5;--accent:#9b8cff;--green:#76d6a2;--gold:#f4c96b;--red:#f18a8a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:90px}
+header{padding:22px 18px 14px;background:linear-gradient(135deg,#211e35,#151720)}.eyebrow{font-size:11px;letter-spacing:2px;color:#b8adff;font-weight:800}.brand{font-size:24px;font-weight:900;margin:5px 0}.sub{color:var(--muted);font-size:12px}
+main{max-width:650px;margin:auto;padding:14px}.hero{background:linear-gradient(135deg,#302b52,#24283a);border:1px solid #514a79;border-radius:20px;padding:18px;margin-bottom:14px}.hero-top{display:flex;justify-content:space-between;align-items:center}.day{font-size:12px;color:#d0caff}.level{font-size:12px;background:#171522;padding:7px 10px;border-radius:99px;color:#d6ceff}.level b{color:white}.xp{font-size:28px;font-weight:900;margin:12px 0 4px}.muted{color:var(--muted);font-size:12px}.bar{height:8px;background:#171923;border-radius:9px;overflow:hidden;margin-top:10px}.bar>i{display:block;height:100%;background:linear-gradient(90deg,#8e7cff,#c1a7ff);width:0%;border-radius:9px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}.stat strong{display:block;font-size:21px;margin-top:5px}.stat span{font-size:11px;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:13px}.cardhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.card h2{font-size:16px;margin:0}.tag{font-size:10px;color:#c6bcff;background:#302b4a;border-radius:20px;padding:5px 8px}
+.quest{display:flex;gap:11px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}.quest:first-of-type{border-top:0}.check{width:24px;height:24px;border:1.5px solid #666d7e;border-radius:8px;flex:none;display:grid;place-items:center;background:transparent;color:#111;font-weight:900}.check.done{background:var(--green);border-color:var(--green)}.qbody{flex:1;min-width:0}.qtitle{font-weight:650}.qmeta{font-size:11px;color:var(--muted);margin-top:3px}.points{font-size:11px;color:var(--gold);white-space:nowrap}
+button,input,select,textarea{font:inherit}button{cursor:pointer;color:inherit}.primary{background:var(--accent);border:0;color:#11121a;font-weight:800;border-radius:12px;padding:11px 14px}.secondary{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:9px 12px}.small{font-size:12px;padding:7px 10px}.row{display:flex;gap:8px;align-items:center}.row>*{min-width:0}.field{width:100%;background:#11131a;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:11px;margin:5px 0 10px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tool{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:13px;text-align:left}.tool b{display:block;margin:5px 0}.tool small{color:var(--muted)}
+nav{position:fixed;bottom:0;left:0;right:0;background:#151720ee;backdrop-filter:blur(15px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:9px 4px calc(9px + env(safe-area-inset-bottom));z-index:5}nav button{border:0;background:none;color:var(--muted);font-size:10px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 10px}nav button.active{color:#c2b7ff}nav b{font-size:19px}
+.page{display:none}.page.active{display:block}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.cell{aspect-ratio:1;background:#242733;border-radius:8px;display:grid;place-items:center;font-size:11px;color:var(--muted)}.cell.hit{background:#385d50;color:#d5ffeb}.cell.today{outline:1px solid var(--accent)}
+textarea{resize:vertical;min-height:90px}.notice{font-size:11px;color:var(--muted);line-height:1.6}.empty{color:var(--muted);font-size:13px;padding:14px 0}
+#toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:#eee;color:#171820;border-radius:30px;padding:10px 16px;font-size:12px;font-weight:700;opacity:0;transition:.2s;pointer-events:none;z-index:10}#toast.show{opacity:1}
+@media(min-width:600px){header{padding-left:max(18px,calc((100% - 650px)/2))}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">66 DAYS • LIFE RESET PROJECT</div><div class="brand">RE:0から始める人生</div><div class="sub">昨日の自分を、今日ひとつ超えていく。</div></header>
+<main>
+<section id="home" class="page active">
+ <div class="hero"><div class="hero-top"><span class="day" id="dayLabel">DAY 1 / 66</span><span class="level">NORMAL MODE · <b id="level">Lv.1</b></span></div><div class="xp"><span id="xp">0</span> <span style="font-size:13px;color:#d0caff">XP</span></div><div class="muted" id="xpNext">次のレベルまであと100 XP</div><div class="bar"><i id="xpBar"></i></div><div class="row" style="justify-content:space-between;margin-top:12px"><span class="muted" id="startLabel">スタート日を設定しよう</span><button class="secondary small" onclick="setStart()">開始日を設定</button></div></div>
+ <div class="stats"><div class="stat"><span>今日の達成率</span><strong id="rate">0%</strong></div><div class="stat"><span>連続達成日数</span><strong id="streak">0 🔥</strong></div><div class="stat"><span>完了ミッション</span><strong id="doneCount">0</strong></div></div>
+ <div class="card"><div class="cardhead"><h2>⚔️ 今日のクエスト</h2><span class="tag">NORMAL</span></div><div id="quests"></div><div class="row" style="margin-top:12px"><input id="newQuest" class="field" style="margin:0" placeholder="新しい習慣を追加"><button class="primary" onclick="addQuest()">追加</button></div><p class="notice">達成したクエストをタップ。XPはその日の初回達成時に加算されます。</p></div>
+ <div class="card"><div class="cardhead"><h2>🎯 今日のひとこと</h2></div><textarea id="dailyNote" class="field" placeholder="今日できたこと、気づいたことを書こう"></textarea><button class="secondary small" onclick="saveNote()">日記を保存</button></div>
+</section>
+<section id="progress" class="page">
+ <div class="card"><div class="cardhead"><h2>📅 66日間の記録</h2><span class="tag" id="progressPct">0%</span></div><p class="muted" id="progressText">スタート日を設定すると進捗が表示されます。</p><div class="calendar" id="calendar"></div></div>
+ <div class="card"><h2>🏆 成長ステータス</h2><div class="stats" style="margin-top:12px"><div class="stat"><span>累計XP</span><strong id="totalXp">0</strong></div><div class="stat"><span>達成日数</span><strong id="daysDone">0</strong></div><div class="stat"><span>最高連続</span><strong id="bestStreak">0</strong></div></div></div>
+ <div class="card"><h2>🛡️ Hard Mode</h2><p class="notice">自分との約束を決めよう。罰ではなく、立て直すためのルールとして使おう。</p><input id="hardRule" class="field" placeholder="例：衝動買いをする前に24時間待つ"><button class="secondary small" onclick="saveHard()">ルールを保存</button><p id="hardSaved" class="muted"></p></div>
+</section>
+<section id="tools" class="page">
+ <div class="card"><h2>🧰 My Tools</h2><div class="grid2" style="margin-top:12px">
+ <button class="tool" onclick="showTool('focus')">⏱️<b>集中タイマー</b><small>25分集中 / 5分休憩</small></button>
+ <button class="tool" onclick="showTool('money')">💰<b>支出管理</b><small>今日の出費を記録</small></button>
+ <button class="tool" onclick="showTool('body')">💪<b>身体・食事</b><small>体重や食事を記録</small></button>
+ <button class="tool" onclick="showTool('reading')">📚<b>読書記録</b><small>読んだ本とページ</small></button>
+ </div></div>
+ <div class="card" id="toolPanel"><h2>使いたいツールを選択</h2><p class="notice">記録はこの端末のブラウザ内に保存されます。</p></div>
+</section>
+<section id="journal" class="page">
+ <div class="card"><h2>📖 日記</h2><p class="muted">小さな前進も、ちゃんと記録に残そう。</p><input type="date" id="journalDate" class="field"><textarea id="journalText" class="field" placeholder="今日の自分にひとこと"></textarea><button class="primary" onclick="saveJournal()">保存する</button></div><div class="card"><h2>過去の日記</h2><div id="journalList" class="empty">まだ日記はありません。</div></div>
+</section>
+</main>
+<nav><button class="active" data-page="home" onclick="go('home',this)"><b>⌂</b>ホーム</button><button data-page="progress" onclick="go('progress',this)"><b>▦</b>進捗</button><button data-page="tools" onclick="go('tools',this)"><b>✧</b>ツール</button><button data-page="journal" onclick="go('journal',this)"><b>▤</b>日記</button></nav><div id="toast"></div>
+<script>
+const KEY='re0_life_reset_v1';
+const defaults=[
+ ['水筒を持ち歩く',10],['無駄な買い物をしない',15],['ギャンブルに行かない',20],
+ ['身体を動かす・ジム',15],['勉強・就活を進める',15],['読書を10分する',10],
+ ['寝る前にスマホを控える',10],['今日を振り返る',5]
+];
+let data=JSON.parse(localStorage.getItem(KEY)||'null')||{start:'',quests:defaults.map((x,i)=>({id:i+1,name:x[0],xp:x[1]})),done:{},notes:{},journals:{},expenses:[],weights:[],books:[],hard:'',timerEnd:0};
+let selectedTool='';const today=()=>new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function dayIndex(){if(!data.start)return 1;let d=Math.floor((new Date(today())-new Date(data.start+'T00:00:00'))/86400000)+1;return Math.max(1,Math.min(66,d))}
+function xpTotal(){return Object.values(data.done).flat().reduce((s,id)=>s+(data.quests.find(q=>q.id===id)?.xp||0),0)}
+function level(){return Math.floor(xpTotal()/100)+1}
+function streak(){let n=0,d=new Date();while(true){let k=d.toISOString().slice(0,10);if((data.done[k]||[]).length===0)break;n++;d.setDate(d.getDate()-1)}return n}
+function notify(s){let t=document.getElementById('toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1700)}
+function render(){let t=today(),done=data.done[t]||[],total=data.quests.length,rate=total?Math.round(done.length/total*100):0,x=xpTotal(),lv=level(),within=x%100;
+ document.getElementById('dayLabel').textContent=`DAY ${dayIndex()} / 66`;document.getElementById('level').textContent='Lv.'+lv;document.getElementById('xp').textContent=x;document.getElementById('xpNext').textContent=`次のレベルまであと ${100-within} XP`;document.getElementById('xpBar').style.width=within+'%';document.getElementById('startLabel').textContent=data.start?'開始日：'+data.start:'スタート日を設定しよう';
+ document.getElementById('rate').textContent=rate+'%';document.getElementById('streak').textContent=streak()+' 🔥';document.getElementById('doneCount').textContent=done.length+'/'+total;
+ document.getElementById('quests').innerHTML=data.quests.map(q=>`<div class="quest"><button class="check ${done.includes(q.id)?'done':''}" onclick="toggle(${q.id})">${done.includes(q.id)?'✓':''}</button><div class="qbody"><div class="qtitle" style="${done.includes(q.id)?'text-decoration:line-through;color:#9da3ae':''}">${esc(q.name)}</div><div class="qmeta">デイリークエスト</div></div><span class="points">+${q.xp} XP</span><button class="secondary small" onclick="removeQuest(${q.id})">×</button></div>`).join('')||'<div class="empty">クエストを追加しよう。</div>';
+ let activeDays=Object.entries(data.done).filter(([k,v])=>v.length).map(([k])=>k);document.getElementById('totalXp').textContent=x;document.getElementById('daysDone').textContent=activeDays.length;document.getElementById('progressPct').textContent=Math.round(dayIndex()/66*100)+'%';document.getElementById('progressText').textContent=`66日間のうち ${dayIndex()} 日目。達成した日を緑色で表示。`;document.getElementById('calendar').innerHTML=Array.from({length:66},(_,i)=>{let d=data.start?new Date(data.start+'T00:00:00'):null;if(d)d.setDate(d.getDate()+i);let k=d?d.toISOString().slice(0,10):'';return `<div class="cell ${k&&(data.done[k]||[]).length?'hit':''} ${k===t?'today':''}" title="${k}">${i+1}</div>`}).join('');
+ let best=0,cur=0,dates=Object.keys(data.done).filter(k=>data.done[k].length).sort();let prev='';dates.forEach(k=>{let diff=prev?(new Date(k)-new Date(prev))/86400000:1;cur=diff===1?cur+1:1;best=Math.max(best,cur);prev=k});document.getElementById('bestStreak').textContent=best;
+ document.getElementById('hardRule').value=data.hard;document.getElementById('hardSaved').textContent=data.hard?'現在のルール：'+data.hard:'';
+ document.getElementById('dailyNote').value=data.notes[t]||'';renderJournals();
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function toggle(id){let t=today(),a=data.done[t]||[],was=a.includes(id);data.done[t]=was?a.filter(x=>x!==id):[...a,id];save();if(!was)notify('クエスト達成！ XP獲得！')}
+function addQuest(){let v=document.getElementById('newQuest').value.trim();if(!v)return;data.quests.push({id:Date.now(),name:v,xp:10});document.getElementById('newQuest').value='';save();notify('クエストを追加した！')}
+function removeQuest(id){if(!confirm('このクエストを削除しますか？'))return;data.quests=data.quests.filter(q=>q.id!==id);Object.keys(data.done).forEach(k=>data.done[k]=data.done[k].filter(x=>x!==id));save()}
+function setStart(){let v=prompt('66日間の開始日を入力（YYYY-MM-DD）',data.start||today());if(v&&/^\d{4}-\d{2}-\d{2}$/.test(v)){data.start=v;save();notify('スタート日を設定！')}}
+function saveNote(){data.notes[today()]=document.getElementById('dailyNote').value;save();notify('今日のメモを保存した')}
+function saveHard(){data.hard=document.getElementById('hardRule').value;save();notify('ルールを保存した')}
+function go(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b===btn));if(id==='journal')renderJournals()}
+function saveJournal(){let d=document.getElementById('journalDate').value||today();data.journals[d]=document.getElementById('journalText').value;save();notify('日記を保存した')}
+function renderJournals(){let el=document.getElementById('journalList');let entries=Object.entries(data.journals).sort((a,b)=>b[0].localeCompare(a[0]));el.innerHTML=entries.length?entries.map(([d,v])=>`<div style="padding:10px 0;border-top:1px solid var(--line)"><b>${d}</b><p style="white-space:pre-wrap;color:var(--muted);margin-bottom:0">${esc(v)}</p></div>`).join(''):'まだ日記はありません。'}
+function showTool(which){selectedTool=which;let p=document.getElementById('toolPanel');if(which==='focus'){p.innerHTML=`<h2>⏱️ 集中タイマー</h2><div style="font-size:46px;font-weight:900;text-align:center;margin:20px" id="timer">25:00</div><div class="row"><button class="primary" onclick="startTimer()">スタート</button><button class="secondary" onclick="stopTimer()">リセット</button><button class="secondary" onclick="setBreak()">5分休憩</button></div><p class="notice">画面を閉じてもタイマー終了時刻を保持します（通知は行いません）。</p>`;updateTimer()}else if(which==='money'){p.innerHTML=`<h2>💰 支出管理</h2><label class="muted">金額（円）</label><input id="expenseAmount" class="field" type="number" placeholder="例：500"><label class="muted">内容</label><input id="expenseMemo" class="field" placeholder="例：飲み物"><button class="primary" onclick="addExpense()">支出を記録</button><p id="expenseTotal" class="muted"></p><div id="expenseList"></div>`;renderExpenses()}else if(which==='body'){p.innerHTML=`<h2>💪 身体・食事記録</h2><label class="muted">体重（kg）</label><input id="weightValue" class="field" type="number" step=".1" placeholder="例：70.5"><label class="muted">食事・メモ</label><input id="bodyMemo" class="field" placeholder="食事や運動のメモ"><button class="primary" onclick="addWeight()">記録する</button><div id="weightList"></div>`;renderWeights()}else{p.innerHTML=`<h2>📚 読書記録</h2><label class="muted">本のタイトル</label><input id="bookTitle" class="field" placeholder="本の名前"><label class="muted">読んだページ</label><input id="bookPages" class="field" type="number" placeholder="例：20"><button class="primary" onclick="addBook()">記録する</button><div id="bookList"></div>`;renderBooks()}}
+function addExpense(){let n=Number(document.getElementById('expenseAmount').value),m=document.getElementById('expenseMemo').value;if(!n||n<1)return;data.expenses.push({date:today(),amount:n,memo:m});save();renderExpenses();notify('支出を記録した')}
+function renderExpenses(){let total=data.expenses.filter(x=>x.date===today()).reduce((s,x)=>s+x.amount,0);document.getElementById('expenseTotal').textContent='今日の支出合計：'+total.toLocaleString()+'円';document.getElementById('expenseList').innerHTML=data.expenses.slice().reverse().slice(0,12).map(x=>`<div class="quest"><div class="qbody">${esc(x.memo||'支出')} <span class="muted">${x.date}</span></div><b>${x.amount.toLocaleString()}円</b></div>`).join('')}
+function addWeight(){let n=Number(document.getElementById('weightValue').value),m=document.getElementById('bodyMemo').value;if(!n)return;data.weights.push({date:today(),weight:n,memo:m});save();renderWeights();notify('身体の記録を保存した')}
+function renderWeights(){document.getElementById('weightList').innerHTML=data.weights.slice().reverse().map(x=>`<div class="quest"><div class="qbody">${x.date} · ${esc(x.memo||'記録')}</div><b>${x.weight} kg</b></div>`).join('')}
+function addBook(){let t=document.getElementById('bookTitle').value.trim(),n=Number(document.getElementById('bookPages').value);if(!t)return;data.books.push({date:today(),title:t,pages:n||0});save();renderBooks();notify('読書を記録した')}
+function renderBooks(){document.getElementById('bookList').innerHTML=data.books.slice().reverse().map(x=>`<div class="quest"><div class="qbody"><b>${esc(x.title)}</b><div class="qmeta">${x.date}</div></div><span>${x.pages}ページ</span></div>`).join('')}
+let timerInterval=null;function startTimer(){if(data.timerEnd> Date.now())return;data.timerEnd=Date.now()+25*60000;save();timerInterval=setInterval(updateTimer,1000);updateTimer()}
+function setBreak(){data.timerEnd=Date.now()+5*60000;save();if(timerInterval)clearInterval(timerInterval);timerInterval=setInterval(updateTimer,1000);updateTimer()}
+function stopTimer(){data.timerEnd=0;if(timerInterval)clearInterval(timerInterval);updateTimer()}
+function updateTimer(){let el=document.getElementById('timer');if(!el)return;let s=Math.max(0,Math.ceil((data.timerEnd-Date.now())/1000));if(!data.timerEnd)s=1500;if(s===0&&data.timerEnd){data.timerEnd=0;save();notify('タイマー終了！おつかれ！')}el.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+document.getElementById('journalDate').value=today();render();if(data.timerEnd>Date.now())timerInterval=setInterval(updateTimer,1000);
+</script>
+</body></html>
